@@ -1,28 +1,18 @@
 const express = require("express");
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose")
+
 const app = express();
+const dotenv = require("dotenv");
 
-// db connect copied from mongoosdb
-const DB ='mongodb+srv://anjali:anjali@cluster0.bubldov.mongodb.net/mernstack?retryWrites=true&w=majority' 
-// use promoise 
-// mongoose.connect(DB,{
-//     useNewUrlParser:true,
-//     useCreateIndex:true,
-//     useUnifiedTopology: true,
-//     useFindAndModify: false
-// }).then(()=>{
-//     console.log("connection succefully")
-// }).catch((err)=> console.log('no connection',err));
+dotenv.config();
+require('./db/conn');
+
+// const User = require('./model/userSchema');
 
 
-
+const PORT = process.env.PORT
 
 //middleware
-
-mongoose.connect(DB).then(()=>{
-    console.log("connection succefully")
-}).catch((err)=> console.log('no connection',err));
-
 const middleware = (req,res, next)=>{
     console.log("Hello my middleware ")
     next();
@@ -53,6 +43,6 @@ app.get('/signup',(req,res)=>{
 })
 // console.log("hii Anjali jayswal")
 
-app.listen(3040,()=>{
-    console.log("running on port 3040")
+app.listen(PORT,()=>{
+    console.log(`running on port ${PORT}`)
 })
