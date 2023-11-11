@@ -34,10 +34,11 @@ app.get('/about', middleware,(req,res)=>{
 
 })
 app.get('/contact',(req,res)=>{
+    res.cookie("Test", "AJAY")
     res.send("Hellow contact word from server")
 
 })
-app.get('/login',(req,res)=>{
+app.get('/signin',(req,res)=>{
     res.send("Hellow login word from server")
 
 
