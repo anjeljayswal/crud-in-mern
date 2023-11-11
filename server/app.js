@@ -9,6 +9,11 @@ require('./db/conn');
 
 // const User = require('./model/userSchema');
 
+app.use(express.json());
+
+// to link the router files to make our route esay 
+app.use(require('./router/auth'));
+
 
 const PORT = process.env.PORT
 
@@ -19,10 +24,10 @@ const middleware = (req,res, next)=>{
 }
 // middleware();
 
-app.get('/',(req,res)=>{
-    res.send("Hellow word from server")
+// app.get('/',(req,res)=>{
+//     res.send("hello wolrd from the server app.js")
+// })
 
-})
 app.get('/about', middleware,(req,res)=>{
     console.log("hello about")
     res.send("Hellow about word from server")
